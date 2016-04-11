@@ -8,14 +8,18 @@
 #                                                                                                  #
 # Authors: Mark Hadjar                                                                             #
 # Version: 1.0                                                                 Updated: 2015-10-30 #
+#
+# https://github.com/markhadjar/unifi_backup/blob/master/unifi_backup.sh
+#
+# modified by wenro 2016/04/10
 ####################################################################################################
 # CONFIGURATION
 
 # Path to UniFi controller data directory
-UCDDIR="/var/lib/unifi/data/";
+UCDDIR="/var/lib/unifi/";
 
 # Path to backup directory
-BKPDIR="/path/to/backups/";
+BKPDIR="/srv/backup/unifi/";
 
 # END CONFIGURATION
 ####################################################################################################
@@ -38,7 +42,7 @@ mkdir -p $BKPDIR
 
 # Create UniFi backup file
 printf "Creating backup file ${DATE}_unifi.tar.gz\n"
-tar -C ${UCDDIR} -czf ${BKPDIR}/${DATE}_unifi.tar.gz
+tar -czfv ${BKPDIR}${DATE}_unifi.tar.gz ${UCDDIR}
 
 # Start UniFi service
 service unifi start
